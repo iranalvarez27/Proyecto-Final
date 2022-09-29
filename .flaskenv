@@ -1,2 +1,2 @@
-FLASK_APP = app.py
-DATABASE_URL = postgresql://postgres:password@localhost:5432/basededatos
+FLASK_APP=iniciar.py
+DATABASE_URI=postgresql://postgres:kanekiypitu@localhost:5432/proyecto
