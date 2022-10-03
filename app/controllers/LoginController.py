@@ -1,5 +1,4 @@
 from operator import methodcaller
-from app import app
 import re
 from flask import render_template, request, redirect
 from app import db

@@ -17,6 +17,7 @@ class User(db.Model):
         return '<User %r>' % self.username
 
 class Product(db.Model):
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     p_id = db.Column(db.String(6), unique=True, nullable=False) 
     p_name = db.Column(db.String(80), nullable=False) #nombre real
     p_price = db.Column(db.Float, nullable=False) #precio
@@ -25,7 +26,7 @@ class Product(db.Model):
     p_brand = db.Column(db.String(120), nullable=False) #marca del producto
     p_due_date = db.Column(db.String(120), nullable=False) #fecha de caducidad
     def __repr__(self):
-        return '<Product %r>' % self.name
+        return '<Product %r>' % self.p_name
 
 class Ventas(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True) #id
@@ -38,4 +39,4 @@ class Ventas(db.Model):
     products_description = db.Column(db.String(120), nullable=False) #productos
 
     def __repr__(self):
-        return '<Ventas %r>' % self.name
+        return '<Ventas %r>' % self.client_name
