@@ -2,19 +2,19 @@ from app import db
 from datetime import datetime
 from flask_sqlalchemy import SQLAlchemy
 
-class User(db.Model):
+class Usuario(db.Model):
     #info basica para las ventas
     id = db.Column(db.Integer, primary_key=True, autoincrement=True) #id 
    # dni = db.Column(db.String(9), unique=True, nullable=False) #dni para pedidos
-    name = db.Column(db.String(80), nullable=False) #nombre real
-    phone = db.Column(db.String(9), nullable=False) #9 digitos
-    adress = db.Column(db.String(120), nullable=False) #direccion tienda fisica
+    name = db.Column(db.String(80),index=True ,nullable=False) #nombre real
+    phone = db.Column(db.String(9),index=True , nullable=False) #9 digitos
+    adress = db.Column(db.String(120),index=True  ,nullable=False) #direccion tienda fisica
     #info para el register
     username = db.Column(db.String(80), unique=True, nullable=False) #nombre usuario
     email = db.Column(db.String(120), unique=True, nullable=False) #correo personal
     password = db.Column(db.String(120), nullable=False) # Encriptar
     def __repr__(self):
-        return '<User %r>' % self.username
+        return '<User {}>'.format(self.username)
 
 class Product(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)

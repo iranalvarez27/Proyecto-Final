@@ -1,9 +1,8 @@
-from operator import methodcaller
 import re
 from flask import render_template, request, redirect
 from app import db
 from app import models
-from app.models import User
+from app.models import Usuario
 import requests
 import json
 from cryptography.hazmat.primitives import hashes
@@ -27,11 +26,14 @@ def index():
 
 def register():
     if request.method == 'POST':
+        name = request.form['name']
+        phone = request.form['phone']
+        adress = request.form['adress']
         username = request.form['username']
         email = request.form['email']
         password = request.form['password']
         try:
-            newUser = models.User(username=username, email=email, password=password)
+            newUser = models.Usuario(username=username, email=email, password=password,name=name,phone=phone,adress=adress)
             db.session.add(newUser)
             db.session.commit()
         except Exception as err:
