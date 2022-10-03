@@ -29,6 +29,12 @@ class Product(db.Model):
         return '<Product %r>' % self.p_name
 
 class Ventas(db.Model):
+    id =db.comlumn(db.Interger, primary_key =True, autoincrement = True)
+    
+    def __repr__(self):
+        return '<User {}>'.format(self.username)
+
+class Cliente(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True) #id
     client_adress_ = db.Column(db.String(120), nullable=False) 
     client_name = db.Column(db.String(80), nullable=False) #nombre del cliente
