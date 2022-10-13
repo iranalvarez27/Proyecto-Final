@@ -14,11 +14,11 @@ def index():
         if not email or not password:
             return "Falta agregar el email o la contraseña"
         try:
-            login = User.query.filter(User.email == email).first()
+            login = Usuario.query.filter(Usuario.email == email).first()
             if login == None or login.email != email:
                 return "Invalid email or password"
             else:
-                return redirect("/perfil")
+                return redirect("/choose")
         except Exception as err:
             print(err)
             return "Error al concentarse con la base de datos"
@@ -38,6 +38,9 @@ def register():
             db.session.commit()
         except Exception as err:
             return "username already exists or email already exists"
-        return redirect("/profile")
+        return redirect("/choose")
 
     return render_template("register.html")
+    
+def choose():
+    return render_template("choose.html")
