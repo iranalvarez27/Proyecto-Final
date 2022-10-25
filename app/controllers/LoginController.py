@@ -3,9 +3,7 @@ from flask import render_template, request, redirect
 from app import db
 from app import models
 from app.models import Usuario
-import requests
 import json
-from cryptography.hazmat.primitives import hashes
 
 def index():
     if request.method == 'POST':
