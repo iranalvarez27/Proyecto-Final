@@ -3,6 +3,7 @@ from flask import render_template, request, redirect
 from app import db
 from app import models
 from app.models import Usuario
+
 import json
 
 def index():
@@ -31,10 +32,11 @@ def register():
         email = request.form['email']
         password = request.form['password']
         try:
-            newUser = models.Usuario(username=username, email=email, password=password,name=name,phone=phone,adress=adress)
+            newUser = models.Usuario(username=username, email=email, password=password,name=name,phone=phone,adress=adress )
             db.session.add(newUser)
             db.session.commit()
         except Exception as err:
+            print (err)
             return "username already exists or email already exists"
         return redirect("/choose")
 

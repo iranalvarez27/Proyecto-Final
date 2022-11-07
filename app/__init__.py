@@ -8,4 +8,5 @@ db = SQLAlchemy(app)
 
 from app.routes.login_bp import login_bp
 app.register_blueprint(login_bp, url_prefix="/")
+
 db.create_all()
