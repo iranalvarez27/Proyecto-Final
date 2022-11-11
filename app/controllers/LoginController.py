@@ -58,10 +58,10 @@ def registrar_producto():
         p_price = request.form['Precio']
         p_stock = request.form['stock']
         p_description = request.form['Descripción']
-        passwp_brandord = request.form['Marca']
+        p_brand = request.form['Marca']
 
         try:
-            newProduct = models.Product(p_id=p_id,p_name=p_name,p_price=p_price,p_stock=p_stock,p_description=p_description,papasswp_brandordssword=passwp_brandord)
+            newProduct = models.Product(p_id=p_id,p_name=p_name,p_price=p_price,p_stock=p_stock,p_description=p_description,p_brand=p_brand)
             db.session.add(newProduct)
             db.session.commit()
         except Exception as err:
