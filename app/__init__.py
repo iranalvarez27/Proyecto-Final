@@ -8,5 +8,5 @@ db = SQLAlchemy(app)
 
 from app.routes.login_bp import login_bp
 app.register_blueprint(login_bp, url_prefix="/")
-
+#app.register_blueprint(Vender_bp,url_prefix="/vender")
 db.create_all()

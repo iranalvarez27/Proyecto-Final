@@ -2,11 +2,13 @@ import re
 from flask import render_template, request, redirect
 from app import db
 from app import models
-from app.models import Usuario
+from app.models import Usuario,Product
+
 
 import json
 
 def index():
+    print(request)
     if request.method == 'POST':
         email = request.form['email']
         password = request.form['password']
@@ -25,14 +27,14 @@ def index():
 
 def register():
     if request.method == 'POST':
-        name = request.form['name']
-        phone = request.form['phone']
+        name = request.form['Name']
+        phone = request.form['Phone']
         adress = request.form['adress']
         username = request.form['username']
         email = request.form['email']
         password = request.form['password']
         try:
-            newUser = models.Usuario(username=username, email=email, password=password,name=name,phone=phone,adress=adress )
+            newUser = models.Usuario(name=name,phone=phone,adress=adress,username=username,email=email,password=password)
             db.session.add(newUser)
             db.session.commit()
         except Exception as err:
@@ -44,3 +46,26 @@ def register():
     
 def choose():
     return render_template("choose.html")
+def vender():
+    return render_template("Vender.html")
+def productos():
+    return render_template("Productos.html")
+
+def registrar_producto():
+    if request.method == 'POST':
+        p_id = request.form['Codigo']
+        p_name = request.form['Nombre']
+        p_price = request.form['Precio']
+        p_stock = request.form['stock']
+        p_description = request.form['Descripción']
+        passwp_brandord = request.form['Marca']
+
+        try:
+            newProduct = models.Product(p_id=p_id,p_name=p_name,p_price=p_price,p_stock=p_stock,p_description=p_description,papasswp_brandordssword=passwp_brandord)
+            db.session.add(newProduct)
+            db.session.commit()
+        except Exception as err:
+            print (err)
+            return "Tu producto no se pudo registrar intenat de nuevo"
+        return redirect("/productos")
+    return render_template("registrar_producto.html")

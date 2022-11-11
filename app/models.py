@@ -16,7 +16,6 @@ class Usuario(db.Model):
     email = db.Column(db.String(120), unique=True, nullable=False) #correo personal
     password = db.Column(db.String(120), nullable=False) # Encriptar
     
-    Productos = relationship("Product",secondary="compra")
     def __repr__(self):
         return '<Usuario {}>'.format(self.username)
 
@@ -29,8 +28,6 @@ class Product(db.Model):
     p_stock = db.Column(db.Integer, nullable=False) #stock
     p_description = db.Column(db.String(120), nullable=False) #descripcion del producto
     p_brand = db.Column(db.String(120), nullable=False) #marca del producto
-    p_due_date = db.Column(db.String(120), nullable=False) #fecha de caducidad
-    Usuarios = relationship("Usuario",secondary="compra")
     
     def __repr__(self):
         return '<Product {}>'.format(self.p_name)
@@ -43,6 +40,7 @@ class Compra(db.Model):
     user_idc = db.Column(db.Integer,db.ForeignKey("Usuarios.id"))
     product_idc = db.Column(db.Integer,db.ForeignKey("Productos.id"))
     Product = relationship(Product,backref=backref("Compra",cascade="all, delete-orphan"))
+    Usuario = relationship(Usuario,backref=backref("Compra",cascade="all, delete-orphan"))
 
     def _repr_(self):
         return '<Compra {}>'.format(self.c_registro)
